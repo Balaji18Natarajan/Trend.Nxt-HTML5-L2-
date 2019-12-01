@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<div id="result"></div>
+<p id="demo"></p>
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    var y = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+ var y = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+  if (typeof(Storage) !== "undefined") {
+  // Store
+  if (localStorage.lastname) {
+  document.getElementById("demo").innerHTML = localStorage.getItem("lastname");
+  }
+  else {
+  localStorage.setItem("lastname", y);
+  // Retrieve
+  document.getElementById("demo").innerHTML = localStorage.getItem("lastname");
+  }
+} else {
+  document.getElementById("demo").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+}
+// Check browser support
+
+</script>
+
+</body>
+</html>
